@@ -1,2 +1,575 @@
 # cityuzl-consulting
 자소서 컨설팅 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cityuzl | 합격 자소서 컨설팅</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Pretendard Web Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  
+  <style>
+    body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
+    /* 드래그 시 텍스트 선택 색상 적용 */
+    ::selection {
+      background-color: rgba(168, 85, 247, 0.3); /* purple-500/30 */
+      color: white;
+    }
+    
+    /* 스크롤바 커스텀 (모달 내부) */
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+  </style>
+</head>
+<body class="bg-black text-gray-200 font-sans overflow-x-hidden">
+  
+  <!-- 1. Navigation -->
+  <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent">
+    <div class="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <!-- 수정: C 텍스트 대신 자소서/글쓰기를 상징하는 펜 아이콘 적용 -->
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-md">
+          <i data-lucide="pen-tool" class="w-4 h-4"></i>
+        </div>
+        <span class="font-bold text-xl tracking-tight text-white">
+          cityuzl
+        </span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#differentiator" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">차별점</a>
+        <a href="#specs" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">합격 데이터</a>
+        <a href="#process" class="text-sm font-medium text-gray-400 hover:text-white transition-colors">진행 과정</a>
+        <button onclick="openModal()" class="bg-white hover:bg-gray-200 text-black px-5 py-2 rounded-full font-bold text-sm transition-all duration-300 flex items-center gap-2">
+          1:1 진단받기
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section -->
+  <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
+    <!-- Background Ambient Glow -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[500px] bg-purple-900/30 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-5 relative z-10 text-center flex flex-col items-center w-full">
+      <a href="https://www.instagram.com/cityuzl" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-medium text-[13px] md:text-sm mb-8 hover:bg-white/10 transition-colors backdrop-blur-md cursor-pointer">
+        <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+        <span>@cityuzl | 합격 자소서의 바이블</span>
+        <i data-lucide="external-link" class="w-3.5 h-3.5 text-gray-500 ml-1"></i>
+      </a>
+      
+      <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.35] mb-5 text-white break-keep">
+        100:1의 경쟁률을 뚫어낸<br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
+          압도적 합격 자소서
+        </span>
+      </h1>
+      
+      <p class="text-[14px] md:text-lg text-gray-400 mb-10 leading-relaxed max-w-2xl font-medium px-4 break-keep">
+        뻔한 이론이 아닙니다.<br>
+        23살에 3대 금융권을 뚫어낸 <strong class="text-white">cityuzl의 실전</strong><br class="md:hidden">
+        <strong class="text-white">합격 공식</strong>을 당신의 자소서에 이식합니다.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto px-4 sm:px-0">
+        <button onclick="openModal()" class="group px-6 py-3.5 md:py-4 rounded-full bg-white text-black font-bold text-[15px] md:text-lg hover:bg-gray-200 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:-translate-y-1">
+          내 자소서 진단받기
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+        <a href="#specs" class="px-6 py-3.5 md:py-4 rounded-full bg-white/5 text-white font-bold text-[15px] md:text-lg border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-md">
+          합격 결과물 보기
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Differentiator Section -->
+  <section class="py-20 md:py-24 bg-[#050505] relative border-t border-white/5" id="differentiator">
+    <div class="max-w-6xl mx-auto px-5">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-3 md:mb-4">
+          왜 <span class="text-purple-400">cityuzl</span>인가요?
+        </h2>
+        <p class="text-gray-500 text-sm md:text-lg">결과를 스스로 입증하지 못하는 컨설팅과는 다릅니다.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-5 md:gap-8">
+        <div class="bg-[#111111] rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 hover:border-purple-500/30 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 text-white">현재 진행형 합격 데이터</h3>
+          <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+            과거의 낡은 데이터가 아닙니다. <strong class="text-purple-300">지금도 직접 합격을 증명하는</strong> 가장 최신의 트렌드 공식을 적용합니다.
+          </p>
+        </div>
+
+        <div class="bg-[#111111] rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 hover:border-pink-500/30 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-pink-500/10 text-pink-400 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 text-white">경험을 뒤집는 기획력</h3>
+          <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+            단순 첨삭을 넘어, 사소한 경험조차 직무 핏에 맞춘 <strong class="text-pink-300">핵심 역량으로 포장하는 기획력</strong>을 제공합니다.
+          </p>
+        </div>
+
+        <div class="bg-[#111111] rounded-2xl md:rounded-3xl p-6 md:p-8 border border-white/5 hover:border-indigo-500/30 transition-all duration-300 group">
+          <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="target" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 text-white">3대 금융권 완벽 타겟팅</h3>
+          <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+            인터넷은행, 시중은행, 금융공기업. <strong class="text-indigo-300">각 기관의 깐깐한 평가 기준</strong>을 파악하여 맞춤형 자소서를 설계합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Concrete Specs & Proof -->
+  <section class="py-20 md:py-24 bg-black relative overflow-hidden border-t border-white/5" id="specs">
+    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-900/10 rounded-full blur-[150px] -z-10 pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-5 relative z-10">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-10 gap-5">
+        <div>
+          <h2 class="text-purple-400 font-bold tracking-widest text-[11px] md:text-sm uppercase mb-2 flex items-center gap-1.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#A855F7" fill-opacity="0.2"/>
+              <path d="M16 8L10.5 14.5L8 11.5" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="12" r="10" stroke="#A855F7" stroke-width="2"/>
+            </svg>
+            cityuzl's Data
+          </h2>
+          <h2 class="text-2xl md:text-4xl font-extrabold text-white leading-tight">
+            스스로 입증해낸 <br class="hidden md:block">압도적 합격 타율
+          </h2>
+        </div>
+        
+        <div class="bg-[#111] px-4 py-2.5 rounded-xl border border-white/10 flex items-center gap-3 w-full md:w-auto justify-around">
+          <div class="text-center md:text-right">
+            <p class="text-[10px] md:text-xs text-gray-500 font-medium">카카오뱅크</p>
+            <p class="text-xl md:text-2xl font-black text-white">100:1<span class="text-[10px] md:text-sm font-medium text-purple-400 ml-0.5">돌파</span></p>
+          </div>
+          <div class="w-px h-8 bg-white/10"></div>
+          <div class="text-center md:text-right">
+            <p class="text-[10px] md:text-xs text-gray-500 font-medium">합격 당시 나이</p>
+            <p class="text-xl md:text-2xl font-black text-white">23<span class="text-[10px] md:text-sm font-medium text-purple-400 ml-0.5">세</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대시보드 스타일 스펙 보드 -->
+      <div class="bg-[#0A0A0A] rounded-2xl md:rounded-[2rem] p-5 md:p-10 border border-white/10 shadow-2xl relative overflow-hidden">
+        <!-- 앰비언트 글로우 -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/5 blur-[100px]"></div>
+
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+          
+          <!-- Left Column: 합격 내역 -->
+          <div class="relative z-10">
+            <h3 class="text-lg md:text-xl font-bold text-white mb-4 md:mb-6 flex items-center gap-2">
+              <i data-lucide="briefcase" class="w-5 h-5 text-purple-400"></i>
+              주요 인턴 합격
+            </h3>
+            <div class="space-y-3 md:space-y-4">
+              <!-- Item 1 -->
+              <div class="flex items-start gap-3 p-4 bg-[#141414] rounded-xl border border-purple-500/20">
+                <i data-lucide="badge-check" class="w-5 h-5 text-purple-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="text-[9px] font-bold px-1.5 py-0.5 bg-purple-500/20 text-purple-300 rounded">최종합격</span>
+                    <span class="text-[9px] font-bold text-gray-400 border border-gray-700 px-1.5 py-0.5 rounded">경쟁률 100:1</span>
+                  </div>
+                  <p class="font-bold text-white text-[15px] md:text-lg">카카오뱅크 어시스턴트</p>
+                </div>
+              </div>
+              
+              <!-- Item 2 -->
+              <div class="flex items-start gap-3 p-4 bg-[#141414] rounded-xl border border-white/5">
+                <i data-lucide="badge-check" class="w-5 h-5 text-indigo-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="text-[9px] font-bold px-1.5 py-0.5 bg-indigo-500/20 text-indigo-300 rounded">최종합격</span>
+                  </div>
+                  <p class="font-bold text-white text-[15px] md:text-lg">KB국민은행 서포터즈</p>
+                </div>
+              </div>
+
+              <!-- 서류 합격 축소 -->
+              <div class="pt-1 pl-1 space-y-1.5">
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-blue-500/20 text-blue-400 rounded w-12 text-center shrink-0">서류합격</span>
+                  <p class="text-[13px] font-medium text-gray-300">IBK기업은행 청년인턴</p>
+                </div>
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-green-500/20 text-green-400 rounded w-12 text-center shrink-0">서류합격</span>
+                  <p class="text-[13px] font-medium text-gray-300">NH농협은행 N돌핀</p>
+                </div>
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-yellow-500/20 text-yellow-400 rounded w-12 text-center shrink-0">서류합격</span>
+                  <p class="text-[13px] font-medium text-gray-300">KB국민은행 캠퍼스스타</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: 수상, 수료 -->
+          <div class="relative z-10">
+            <h3 class="text-lg md:text-xl font-bold text-white mb-4 md:mb-6 flex items-center gap-2">
+              <i data-lucide="award" class="w-5 h-5 text-pink-400"></i>
+              수상 및 대외활동
+            </h3>
+            <div class="space-y-3 md:space-y-4">
+              <!-- Item 3 -->
+              <div class="flex items-start gap-3 p-4 bg-[#141414] rounded-xl border border-white/5">
+                <i data-lucide="trophy" class="w-5 h-5 text-yellow-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <div class="flex items-center gap-1.5 mb-1">
+                    <span class="text-[9px] font-bold px-1.5 py-0.5 bg-yellow-500/20 text-yellow-300 rounded">장려상</span>
+                  </div>
+                  <p class="font-bold text-white text-[15px] md:text-lg">한국은행 공모전 표창</p>
+                </div>
+              </div>
+
+              <div class="pt-1 pl-1 space-y-1.5">
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-white/10 text-gray-300 rounded w-12 text-center shrink-0">최종합격</span>
+                  <p class="text-[13px] font-medium text-gray-300">JA Korea 경제봉사단</p>
+                </div>
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-white/10 text-gray-300 rounded w-12 text-center shrink-0">수료</span>
+                  <p class="text-[13px] font-medium text-gray-300">삼성생명 금융아카데미</p>
+                </div>
+                <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 bg-white/10 text-gray-300 rounded w-12 text-center shrink-0">수료</span>
+                  <p class="text-[13px] font-medium text-gray-300">아태 금융서포터즈</p>
+                </div>
+                
+                <div class="flex items-center gap-2 mt-4 p-3 bg-[#141414] rounded-lg border border-white/5">
+                  <i data-lucide="book-open" class="w-4 h-4 text-purple-400"></i>
+                  <p class="text-[13px] font-bold text-white"><span class="text-gray-500 font-medium mr-2">자격증</span> AFPK</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Pain Points -->
+  <section class="py-20 md:py-24 bg-[#050505] border-t border-white/5">
+    <div class="max-w-3xl mx-auto px-5">
+      <div class="text-center mb-10 md:mb-14">
+        <h2 class="text-gray-500 font-bold tracking-widest text-xs uppercase mb-2">Before Consulting</h2>
+        <p class="text-2xl md:text-4xl font-extrabold text-white">이런 고민 하고 계신가요?</p>
+      </div>
+
+      <div class="flex flex-col gap-4 max-w-lg mx-auto">
+        <div class="flex gap-3 items-end justify-start">
+          <div class="bg-[#111] px-5 py-3.5 rounded-2xl rounded-bl-sm border border-white/5 text-gray-300 font-medium text-[13px] md:text-sm">
+            "나이가 어려서 스펙이나 경험이 부족해요..."
+          </div>
+        </div>
+        
+        <div class="flex gap-3 items-end justify-end">
+          <div class="bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3.5 rounded-2xl rounded-br-sm text-white font-medium text-[13px] md:text-sm shadow-md">
+            "평범한 경험뿐인데, 차별화가 될까요?"
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-end justify-start">
+          <div class="bg-[#111] px-5 py-3.5 rounded-2xl rounded-bl-sm border border-white/5 text-gray-300 font-medium text-[13px] md:text-sm">
+            "극악의 서류 배수, 도대체 누가 붙는 건가요?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Process Section -->
+  <section class="py-20 md:py-24 relative bg-black border-t border-white/5" id="process">
+    <div class="max-w-5xl mx-auto px-5 relative z-10">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-purple-400 font-bold tracking-widest text-xs uppercase mb-2">1:1 Process</h2>
+        <h2 class="text-2xl md:text-4xl font-extrabold text-white mb-3">
+          합격 자소서 기획 단계
+        </h2>
+        <p class="text-gray-400 text-sm md:text-base">단순 첨삭이 아닌, 당신만의 무기를 기획합니다.</p>
+      </div>
+
+      <div class="space-y-4 md:space-y-6">
+        <!-- Step 1 -->
+        <div class="bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+          <div class="text-4xl md:text-5xl font-black text-white/5">01</div>
+          <div>
+            <h3 class="text-lg md:text-xl font-bold text-white mb-1.5 flex items-center gap-2">
+              <i data-lucide="target" class="w-4 h-4 md:w-5 md:h-5 text-purple-400"></i> 경험 & 타겟팅
+            </h3>
+            <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+              사소한 과거 경험을 스캔하여, 지원 직무와 완벽하게 핏(Fit)이 맞는 핵심 역량으로 재정의합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+          <div class="text-4xl md:text-5xl font-black text-white/5">02</div>
+          <div>
+            <h3 class="text-lg md:text-xl font-bold text-white mb-1.5 flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 md:w-5 md:h-5 text-pink-400"></i> 초안 프레임워크
+            </h3>
+            <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+              시선을 끄는 소제목(Hook)과 STAR 프레임워크를 기반으로 빈틈없는 스토리라인 초안을 완성합니다.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-white/5 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
+          <div class="text-4xl md:text-5xl font-black text-white/5">03</div>
+          <div>
+            <h3 class="text-lg md:text-xl font-bold text-white mb-1.5 flex items-center gap-2">
+              <i data-lucide="pen-tool" class="w-4 h-4 md:w-5 md:h-5 text-indigo-400"></i> 디테일 퇴고
+            </h3>
+            <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+              전문적인 어휘 교정과 가독성 극대화를 통해, 글자 수에 완벽히 맞춘 최종 제출본을 도출합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Bottom CTA -->
+  <section class="relative py-24 md:py-32 overflow-hidden flex items-center justify-center bg-[#050505]">
+    <div class="absolute inset-0 z-0">
+       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[300px] bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full blur-[80px]"></div>
+    </div>
+
+    <div class="relative z-10 w-full px-5 text-center text-white">
+      <i data-lucide="instagram" class="w-10 h-10 text-pink-400 mx-auto mb-5 opacity-80"></i>
+      <h2 class="text-2xl md:text-4xl font-bold mb-5 tracking-tight">
+        합격 자소서,<br>이제 당신 차례입니다.
+      </h2>
+      <div class="bg-white/5 border border-white/10 rounded-xl p-4 md:p-6 max-w-lg mx-auto mb-8 backdrop-blur-sm">
+        <p class="text-[13px] md:text-base font-medium text-gray-200 leading-relaxed">
+          퀄리티 유지를 위해 <strong class="text-purple-400">극소수 한정 인원</strong>만 진행합니다.<br>여석 마감 전 진단부터 신청하세요.
+        </p>
+      </div>
+      
+      <button onclick="openModal()" class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-black font-bold text-[15px] md:text-lg shadow-lg hover:bg-gray-200 transition-all flex items-center justify-center gap-2 mx-auto">
+        1:1 무료 컨설팅 신청
+        <i data-lucide="chevron-right" class="w-5 h-5 text-black"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black py-10 border-t border-white/10 text-center">
+    <div class="max-w-6xl mx-auto px-5 flex flex-col items-center gap-4">
+      <div class="font-bold text-xl tracking-tighter text-white flex items-center gap-2">
+        cityuzl
+        <a href="https://www.instagram.com/cityuzl" target="_blank" rel="noreferrer" class="text-gray-500 hover:text-pink-500 transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <div class="flex gap-4 text-xs font-semibold text-gray-500">
+        <a href="#" class="hover:text-white transition-colors">이용약관</a>
+        <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+      </div>
+      <p class="text-gray-600 text-[10px] mt-2">© 2026 cityuzl Consulting. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 수정: SMS 입력 폼 모달 UI -->
+  <div id="smsModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 px-4">
+    <div class="bg-[#111] border border-white/10 rounded-2xl w-full max-w-lg p-5 md:p-8 flex flex-col relative transform scale-95 transition-transform duration-300" id="smsModalContent">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <h3 class="text-lg md:text-xl font-bold text-white mb-2 flex items-center gap-2">
+        <i data-lucide="message-square-text" class="w-5 h-5 text-purple-400"></i> 1:1 진단 사전 설문
+      </h3>
+      <p class="text-[12px] md:text-[13px] text-gray-400 mb-5 leading-relaxed break-keep">
+        폼을 작성하신 후 하단의 버튼을 누르면, 내용이 복사됨과 동시에 <strong class="text-purple-300">문자 메시지(010-4435-3579)</strong> 창이 열립니다. 그대로 전송해주시면 빠르게 연락드리겠습니다.
+      </p>
+
+      <!-- 사용자 입력 폼 -->
+      <form id="smsForm" class="bg-[#0A0A0A] border border-white/5 rounded-xl p-4 md:p-5 mb-5 max-h-[50vh] overflow-y-auto space-y-5 custom-scrollbar">
+        <!-- Q1 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">1. 지원자 이름을 알려주세요.</label>
+          <input type="text" id="q1" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="홍길동">
+        </div>
+        <!-- Q2 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">2. 연락받으실 전화번호를 기재해주세요.</label>
+          <input type="tel" id="q2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="010-1234-5678">
+        </div>
+        <!-- Q3 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">3. 현재 나이와 최종학력(재학 중인 학교/전공)을 알려주세요.</label>
+          <input type="text" id="q3" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="23세 / OO대학교 경제학과 3학년">
+        </div>
+        <!-- Q4 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">4. 지원을 희망하는 기업 및 직무를 알려주세요.</label>
+          <input type="text" id="q4" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="예: 카카오뱅크 어시스턴트 / 시중은행 행원">
+        </div>
+        <!-- Q5 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">5. 현재 보유 중인 정량적 스펙(자격증, 어학, 학점 등)을 간략히 적어주세요.</label>
+          <textarea id="q5" rows="2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="학점 3.8, 토익 850, AFPK 등"></textarea>
+        </div>
+        <!-- Q6 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">6. 과거 주요 경험(아르바이트, 동아리, 조별과제 등 1~2개)을 간략히 적어주세요.</label>
+          <textarea id="q6" rows="2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="카페 아르바이트 1년, 교내 마케팅 학회 활동"></textarea>
+        </div>
+        <!-- Q7 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">7. 자소서 작성 시 가장 어려움을 느끼는 부분은 무엇인가요?</label>
+          <textarea id="q7" rows="2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="경험이 너무 평범해서 어떻게 어필해야 할지 모르겠어요."></textarea>
+        </div>
+        <!-- Q8 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">8. 컨설팅을 통해 가장 얻고 싶은 점은 무엇인가요?</label>
+          <textarea id="q8" rows="2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="서류 합격률을 높일 수 있는 확실한 필살기 문항 작성"></textarea>
+        </div>
+        <!-- Q9 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">9. 희망하는 컨설팅 일정(대략적인 날짜/시간대)을 알려주세요.</label>
+          <input type="text" id="q9" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="평일 저녁 7시 이후 가능합니다.">
+        </div>
+        <!-- Q10 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">10. 어떤 경로로 cityuzl 컨설팅을 알게 되셨나요?</label>
+          <input type="text" id="q10" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="인스타그램 게시물 / 지인 추천 등">
+        </div>
+        <!-- Q11 -->
+        <div>
+          <label class="block text-[13px] font-medium text-gray-300 mb-1.5">11. 그 외 궁금한 점이 있다면 알려주세요.</label>
+          <textarea id="q11" rows="2" class="w-full bg-[#1A1A1A] border border-white/10 rounded-lg px-3 py-2 text-[13px] text-white focus:outline-none focus:border-purple-500 transition-colors" placeholder="자유롭게 기재해주세요."></textarea>
+        </div>
+      </form>
+
+      <button onclick="sendSMS()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-[14px] md:text-[15px] shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        복사 및 문자로 보내기
+        <i data-lucide="send" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 스크립트 기능 (스크롤, 아이콘 렌더링, 모달/문자 전송) -->
+  <script>
+    // 1. Lucide 아이콘 초기화
+    lucide.createIcons();
+
+    // 2. 스크롤 네비게이션 효과
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add('bg-black/80', 'backdrop-blur-xl', 'shadow-sm', 'border-white/10');
+        navbar.classList.remove('bg-transparent', 'border-transparent');
+      } else {
+        navbar.classList.add('bg-transparent', 'border-transparent');
+        navbar.classList.remove('bg-black/80', 'backdrop-blur-xl', 'shadow-sm', 'border-white/10');
+      }
+    });
+
+    // 3. 모달 열기/닫기 기능
+    function openModal() {
+      const modal = document.getElementById('smsModal');
+      const content = document.getElementById('smsModalContent');
+      modal.classList.remove('hidden');
+      
+      // reflow를 발생시켜 애니메이션 적용
+      void modal.offsetWidth;
+      modal.classList.remove('opacity-0');
+      content.classList.remove('scale-95');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('smsModal');
+      const content = document.getElementById('smsModalContent');
+      modal.classList.add('opacity-0');
+      content.classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300); // transition duration과 동일하게 맞춤
+    }
+
+    // 4. 입력 폼 데이터 취합, 클립보드 복사 및 SMS 앱 실행
+    function sendSMS() {
+      // 폼에서 데이터 가져오기 (미입력 시 '미기재' 처리)
+      const q1 = document.getElementById('q1').value.trim() || '미기재';
+      const q2 = document.getElementById('q2').value.trim() || '미기재';
+      const q3 = document.getElementById('q3').value.trim() || '미기재';
+      const q4 = document.getElementById('q4').value.trim() || '미기재';
+      const q5 = document.getElementById('q5').value.trim() || '미기재';
+      const q6 = document.getElementById('q6').value.trim() || '미기재';
+      const q7 = document.getElementById('q7').value.trim() || '미기재';
+      const q8 = document.getElementById('q8').value.trim() || '미기재';
+      const q9 = document.getElementById('q9').value.trim() || '미기재';
+      const q10 = document.getElementById('q10').value.trim() || '미기재';
+      const q11 = document.getElementById('q11').value.trim() || '없음';
+
+      // 복사 및 전송할 문자 템플릿
+      const textToCopy = `[cityuzl 1:1 자소서 진단 신청]
+
+1. 이름: ${q1}
+2. 연락처: ${q2}
+3. 나이/최종학력: ${q3}
+4. 희망 기업/직무: ${q4}
+5. 정량적 스펙: ${q5}
+6. 주요 경험: ${q6}
+7. 작성 시 어려움: ${q7}
+8. 얻고 싶은 점: ${q8}
+9. 희망 일정: ${q9}
+10. 유입 경로: ${q10}
+11. 기타 문의: ${q11}`;
+
+      // 클립보드에 복사 시도
+      try {
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = textToCopy;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextarea);
+        alert('설문 내용이 클립보드에 복사되었습니다.\\n문자 앱이 열리면 붙여넣기 후 전송해주세요.');
+      } catch (err) {
+        console.error('클립보드 복사 실패', err);
+      }
+
+      // 기기 OS 판별하여 알맞은 SMS URL Scheme 실행 (010-4435-3579)
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      let smsUrl = `sms:01044353579?body=${encodeURIComponent(textToCopy)}`;
+      
+      // iOS 기기일 경우 구분자를 &로 사용해야 바디 텍스트가 정상 입력됨
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        smsUrl = `sms:01044353579&body=${encodeURIComponent(textToCopy)}`;
+      }
+      
+      window.location.href = smsUrl;
+      closeModal();
+    }
+  </script>
+</body>
+</html>

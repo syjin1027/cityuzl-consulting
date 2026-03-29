@@ -35,10 +35,6 @@
   <nav id="navbar" class="fixed w-full z-50 top-0 transition-all duration-300 bg-transparent border-b border-transparent">
     <div class="max-w-6xl mx-auto px-5 py-4 flex justify-between items-center">
       <div class="flex items-center gap-3">
-        <!-- 수정: C 텍스트 대신 자소서/글쓰기를 상징하는 펜 아이콘 적용 -->
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center text-white shadow-md">
-          <i data-lucide="pen-tool" class="w-4 h-4"></i>
-        </div>
         <span class="font-bold text-xl tracking-tight text-white">
           cityuzl
         </span>
@@ -202,7 +198,7 @@
                   <div class="flex items-center gap-1.5 mb-1">
                     <span class="text-[9px] font-bold px-1.5 py-0.5 bg-indigo-500/20 text-indigo-300 rounded">최종합격</span>
                   </div>
-                  <p class="font-bold text-white text-[15px] md:text-lg">KB국민은행 서포터즈</p>
+                  <p class="font-bold text-white text-[15px] md:text-lg">KB국민은행 디지털 서포터즈</p>
                 </div>
               </div>
 
@@ -253,12 +249,12 @@
                 </div>
                 <div class="flex items-center gap-2 py-1.5 px-2 rounded-md hover:bg-white/5">
                   <span class="text-[9px] font-bold px-1.5 py-0.5 bg-white/10 text-gray-300 rounded w-12 text-center shrink-0">수료</span>
-                  <p class="text-[13px] font-medium text-gray-300">아태 금융서포터즈</p>
+                  <p class="text-[13px] font-medium text-gray-300">아시아 태평양 금융 서포터즈</p>
                 </div>
                 
                 <div class="flex items-center gap-2 mt-4 p-3 bg-[#141414] rounded-lg border border-white/5">
-                  <i data-lucide="book-open" class="w-4 h-4 text-purple-400"></i>
-                  <p class="text-[13px] font-bold text-white"><span class="text-gray-500 font-medium mr-2">자격증</span> AFPK</p>
+                  <i data-lucide="book-open" class="w-4 h-4 text-purple-400 shrink-0"></i>
+                  <p class="text-[13px] font-bold text-white leading-relaxed"><span class="text-gray-500 font-medium mr-2">자격증</span> AFPK, 외환전문역 I, ADsP</p>
                 </div>
               </div>
             </div>
@@ -394,7 +390,7 @@
     </div>
   </footer>
 
-  <!-- 수정: SMS 입력 폼 모달 UI -->
+  <!-- SMS 입력 폼 모달 UI -->
   <div id="smsModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300 px-4">
     <div class="bg-[#111] border border-white/10 rounded-2xl w-full max-w-lg p-5 md:p-8 flex flex-col relative transform scale-95 transition-transform duration-300" id="smsModalContent">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10">
@@ -551,23 +547,31 @@
         tempTextarea.select();
         document.execCommand('copy');
         document.body.removeChild(tempTextarea);
-        alert('설문 내용이 클립보드에 복사되었습니다.\\n문자 앱이 열리면 붙여넣기 후 전송해주세요.');
+        // 사용자 알림 추가
+        alert('설문 내용이 클립보드에 복사되었습니다.\\n(※ PC 환경에서는 문자 앱이 자동으로 열리지 않을 수 있습니다. 모바일 환경을 권장합니다.)');
       } catch (err) {
         console.error('클립보드 복사 실패', err);
       }
 
-      // 기기 OS 판별하여 알맞은 SMS URL Scheme 실행 (010-4435-3579)
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      // 기기 OS 판별하여 문자 앱 실행 (Anchor 태그 프로그램 클릭 방식)
+      const userAgent = navigator.userAgent.toLowerCase();
       let smsUrl = `sms:01044353579?body=${encodeURIComponent(textToCopy)}`;
       
-      // iOS 기기일 경우 구분자를 &로 사용해야 바디 텍스트가 정상 입력됨
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      // iOS 기기 처리
+      if (/iphone|ipad|ipod/.test(userAgent)) {
         smsUrl = `sms:01044353579&body=${encodeURIComponent(textToCopy)}`;
       }
       
-      window.location.href = smsUrl;
+      // a 태그를 생성해서 강제로 클릭 이벤트를 발생시킴
+      const a = document.createElement('a');
+      a.href = smsUrl;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      
       closeModal();
     }
   </script>
 </body>
 </html>
+```

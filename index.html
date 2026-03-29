@@ -64,7 +64,7 @@
       </a>
       
       <h1 class="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.35] mb-5 text-white break-keep">
-        100:1의 경쟁률을 뚫어낸<br>
+        100:1의경쟁률을 뚫어낸<br>
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
           압도적 합격 자소서
         </span>
@@ -509,7 +509,7 @@
       }, 300); // transition duration과 동일하게 맞춤
     }
 
-    // 4. 입력 폼 데이터 취합, 클립보드 복사 및 SMS 앱 실행
+    // 4. 입력 폼 데이터 취합, 클립보드 복사 및 SMS 앱 바로 실행 (alert 제거)
     function sendSMS() {
       // 폼에서 데이터 가져오기 (미입력 시 '미기재' 처리)
       const q1 = document.getElementById('q1').value.trim() || '미기재';
@@ -539,7 +539,7 @@
 10. 유입 경로: ${q10}
 11. 기타 문의: ${q11}`;
 
-      // 클립보드에 복사 시도
+      // 1. 클립보드에 조용히 복사 시도
       try {
         const tempTextarea = document.createElement('textarea');
         tempTextarea.value = textToCopy;
@@ -547,13 +547,11 @@
         tempTextarea.select();
         document.execCommand('copy');
         document.body.removeChild(tempTextarea);
-        // 사용자 알림 추가
-        alert('설문 내용이 클립보드에 복사되었습니다.\\n(※ PC 환경에서는 문자 앱이 자동으로 열리지 않을 수 있습니다. 모바일 환경을 권장합니다.)');
       } catch (err) {
         console.error('클립보드 복사 실패', err);
       }
 
-      // 기기 OS 판별하여 문자 앱 실행 (Anchor 태그 프로그램 클릭 방식)
+      // 2. 기기 OS 판별하여 즉시 문자 앱 실행 (방해되는 alert 제거)
       const userAgent = navigator.userAgent.toLowerCase();
       let smsUrl = `sms:01044353579?body=${encodeURIComponent(textToCopy)}`;
       
@@ -562,16 +560,11 @@
         smsUrl = `sms:01044353579&body=${encodeURIComponent(textToCopy)}`;
       }
       
-      // a 태그를 생성해서 강제로 클릭 이벤트를 발생시킴
-      const a = document.createElement('a');
-      a.href = smsUrl;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      // 바로 URL 이동 처리
+      window.location.href = smsUrl;
       
       closeModal();
     }
   </script>
 </body>
 </html>
-```
